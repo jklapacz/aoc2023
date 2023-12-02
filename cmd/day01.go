@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 
+	"aoc/pkg/parsers"
+
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
@@ -18,29 +20,6 @@ treb7uchet`
 func turnInputIntoSlice(input string) []string {
 	// input is newline separated string
 	return strings.Split(input, "\n")
-}
-
-func hasSpelledOutNumber(line string) bool {
-	// returns true if the line contains a spelled out number
-	return strings.Contains(line, "one") ||
-		strings.Contains(line, "two") ||
-		strings.Contains(line, "three") ||
-		strings.Contains(line, "four") ||
-		strings.Contains(line, "five") ||
-		strings.Contains(line, "six") ||
-		strings.Contains(line, "seven") ||
-		strings.Contains(line, "eight") ||
-		strings.Contains(line, "nine")
-}
-
-func replaceSpelledOutNumber(line string) string {
-	// replaces first instance of a spelled out number with its value
-	// strings.Replace()
-	return line
-}
-
-func preprocessLine(line string) string {
-	return line
 }
 
 func getFirstDigit(line string) int {
@@ -75,9 +54,15 @@ func getLastDigit(line string) int {
 	return res
 }
 
-func getCalibrationNumber(line string) int {
-	first := getFirstDigit(line)
-	last := getLastDigit(line)
+func getCalibrationNumber(line string, parse bool) int {
+	var first, last int
+	if parse {
+		first = getFirstDigit(parsers.Parse(line, "lr"))
+		last = getLastDigit(parsers.Parse(line, "rl"))
+	} else {
+		first = getFirstDigit(line)
+		last = getLastDigit(line)
+	}
 
 	combinedNumber := fmt.Sprint(first) + fmt.Sprint(last)
 
@@ -100,6 +85,7 @@ func readFile(filename string) string {
 }
 
 var inputFile string
+var parse bool
 
 var day01Cmd = &cobra.Command{
 	Use:   "day01",
@@ -115,7 +101,7 @@ var day01Cmd = &cobra.Command{
 		lines := turnInputIntoSlice(input)
 		sum := 0
 		for _, line := range lines {
-			sum += getCalibrationNumber(line)
+			sum += getCalibrationNumber(line, parse)
 		}
 		fmt.Println(sum)
 	},
@@ -123,4 +109,6 @@ var day01Cmd = &cobra.Command{
 
 func init() {
 	day01Cmd.Flags().StringVarP(&inputFile, "input", "i", "", "Input for the problem")
+	// add an option if -p is passed we want to set parse to true
+	day01Cmd.Flags().BoolVarP(&parse, "parse", "p", false, "Parse the input")
 }
