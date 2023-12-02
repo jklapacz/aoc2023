@@ -29,6 +29,7 @@ func init() {
 		log.SetLevel(log.ErrorLevel)
 	}
 	RootCmd.AddCommand(versionCmd)
+	RootCmd.AddCommand(day01Cmd)
 }
 
 func Execute() {
