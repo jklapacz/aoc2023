@@ -91,7 +91,7 @@ func hasMoreDigits(input string) bool {
 	return false
 }
 
-func Parse(input string, mode string) string {
+func ParseDay01(input string, mode string) string {
 	if mode != "lr" && mode != "rl" {
 		log.Fatal("mode must be lr or rl")
 	}

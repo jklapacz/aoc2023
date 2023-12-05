@@ -57,8 +57,8 @@ func getLastDigit(line string) int {
 func getCalibrationNumber(line string, parse bool) int {
 	var first, last int
 	if parse {
-		first = getFirstDigit(parsers.Parse(line, "lr"))
-		last = getLastDigit(parsers.Parse(line, "rl"))
+		first = getFirstDigit(parsers.ParseDay01(line, "lr"))
+		last = getLastDigit(parsers.ParseDay01(line, "rl"))
 	} else {
 		first = getFirstDigit(line)
 		last = getLastDigit(line)
