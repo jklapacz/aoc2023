@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	"aoc/pkg/parsers"
 	"aoc/puzzle_utils"
+	"aoc/puzzles/day02"
 	"fmt"
 
 	"github.com/charmbracelet/log"
@@ -24,31 +24,18 @@ var day02Cmd = &cobra.Command{
 		} else {
 			input = puzzle_utils.ReadFile(inputFile)
 		}
-		config := parsers.Round{
+		if power {
+			sum := day02.Part02(input)
+			fmt.Printf("Sum of all powers: %d\n", sum)
+			return
+		}
+		config := day02.Round{
 			RedCubes:   redCubes,
 			GreenCubes: greenCubes,
-			BlueCubes:  blueCubes}
-		lines := turnInputIntoSlice(input)
-		games := []parsers.Day02{}
-		for _, line := range lines {
-			game := parsers.ParseDay02(line)
-			games = append(games, game)
+			BlueCubes:  blueCubes,
 		}
-		sum := 0
-		if power {
-			for _, game := range games {
-				sum += game.GetPower()
-			}
-			fmt.Println("Sum of all powers:", sum)
-		} else {
-			for _, game := range games {
-				if game.IsPossibleGame(config) {
-					sum += game.Id
-					log.Infof("Game %d: %v", game.Id, game.Rounds)
-				}
-			}
-			fmt.Println("Sum of possible games:", sum)
-		}
+		sum := day02.Part01(input, config)
+		fmt.Printf("Sum of possible games: %d\n", sum)
 	},
 }
 

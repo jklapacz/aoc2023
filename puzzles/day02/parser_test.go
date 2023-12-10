@@ -1,4 +1,4 @@
-package parsers
+package day02
 
 import (
 	"fmt"

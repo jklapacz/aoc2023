@@ -1,7 +1,6 @@
 package day02
 
 import (
-	"aoc/pkg/parsers"
 	"aoc/puzzle_utils"
 	"testing"
 )
@@ -10,7 +9,7 @@ func TestPuzzleDay02(t *testing.T) {
 	// read in the input file
 	input := puzzle_utils.ReadFile("../../inputs/day02-part1.txt")
 	t.Run("Part 1", func(t *testing.T) {
-		config := parsers.Round{
+		config := Round{
 			RedCubes:   12,
 			GreenCubes: 13,
 			BlueCubes:  14,
