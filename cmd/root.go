@@ -30,6 +30,7 @@ func init() {
 	}
 	RootCmd.AddCommand(versionCmd)
 	RootCmd.AddCommand(day01Cmd)
+	RootCmd.AddCommand(day02Cmd)
 }
 
 func Execute() {

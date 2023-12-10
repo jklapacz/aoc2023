@@ -1,7 +1,6 @@
 package parsers
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/charmbracelet/log"
@@ -34,8 +33,6 @@ func findFirstDigit(input string) (string, int) {
 		"eight": strings.Index(input, "eight"),
 		"nine":  strings.Index(input, "nine"),
 	}
-	// get the smallest index
-	fmt.Printf("%v\n", digitIndex)
 	smallestIndex := -1
 	firstDigit := ""
 	for key, value := range digitIndex {
@@ -48,7 +45,6 @@ func findFirstDigit(input string) (string, int) {
 			firstDigit = key
 		}
 	}
-	fmt.Printf("firstDigit: %s, at index=%d input=%s\n", firstDigit, smallestIndex, input)
 	return firstDigit, smallestIndex
 }
 
@@ -64,8 +60,6 @@ func findLastDigit(input string) (string, int) {
 		"eight": strings.LastIndex(input, "eight"),
 		"nine":  strings.LastIndex(input, "nine"),
 	}
-	// get the largest index
-	fmt.Printf("%v\n", digitIndex)
 	idx := -1
 	digit := ""
 	for key, value := range digitIndex {
@@ -78,7 +72,6 @@ func findLastDigit(input string) (string, int) {
 			digit = key
 		}
 	}
-	fmt.Printf("lastDigit: %s, at index=%d input=%s\n", digit, idx, input)
 	return digit, idx
 }
 

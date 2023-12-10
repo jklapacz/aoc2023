@@ -1,7 +1,6 @@
 package parsers
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -122,7 +121,6 @@ func TestParseComplex(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			fmt.Println("-->")
 			if got := ParseDay01(tt.input, "lr"); got != tt.want {
 				t.Errorf("Parse() = %v, want %v", got, tt.want)
 			}
@@ -154,7 +152,6 @@ func TestParseRightToLeft(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			fmt.Println("-->")
 			if got := ParseDay01(tt.input, "rl"); got != tt.want {
 				t.Errorf("Parse() = %v, want %v", got, tt.want)
 			}
