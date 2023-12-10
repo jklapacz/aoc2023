@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"aoc/pkg/parsers"
+	"aoc/puzzle_utils"
 	"fmt"
 
 	"github.com/charmbracelet/log"
@@ -21,9 +22,12 @@ var day02Cmd = &cobra.Command{
 		if inputFile == "" {
 			log.Fatal("No input file specified")
 		} else {
-			input = readFile(inputFile)
+			input = puzzle_utils.ReadFile(inputFile)
 		}
-		config := parsers.Round{redCubes, greenCubes, blueCubes}
+		config := parsers.Round{
+			RedCubes:   redCubes,
+			GreenCubes: greenCubes,
+			BlueCubes:  blueCubes}
 		lines := turnInputIntoSlice(input)
 		games := []parsers.Day02{}
 		for _, line := range lines {

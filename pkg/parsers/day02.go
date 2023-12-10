@@ -28,7 +28,7 @@ func getGame(input string) int {
 	id = strings.Replace(id, ":", "", 1)
 	intId, err := strconv.Atoi(id)
 	if err != nil {
-		log.Warn("Could not parse game ID")
+		log.Warn("Could not parse game ID", "line", input)
 		return 0
 	}
 	return intId
